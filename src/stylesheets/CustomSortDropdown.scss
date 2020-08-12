@@ -14,14 +14,14 @@ $select-height: 40px;
   text-align: left;
 }
 
-.CoveoSortDropdown {
+.CoveoCustomSortDropdown {
   margin-bottom: 5px;
   .CoveoSort {
     display: none;
   }
 }
 
-.CoveoSortDropdown.coveo-sort-hidden {
+.CoveoCustomSortDropdown.coveo-sort-hidden {
     display: none;
 }
 
