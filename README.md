@@ -53,13 +53,13 @@ npm i @coveops/sort-dropdown
 Typescript:
 
 ```javascript
-import { SortDropdown, ISortDropdownOptions } from '@coveops/sort-dropdown';
+import { CustomSortDropdown, ICustomSortDropdownOptions } from '@coveops/sort-dropdown';
 ```
 
 Javascript
 
 ```javascript
-const SortDropdown = require('@coveops/sort-dropdown').SortDropdown;
+const CustomSortDropdown = require('@coveops/sort-dropdown').CustomSortDropdown;
 ```
 
 3. You can also expose the component alongside other components being built in your project.
@@ -70,10 +70,8 @@ export * from '@coveops/sort-dropdown'
 
 4. Include the component in your template as follows:
 
-Place the component after the last tab in the `coveo-tab-section`
-
 ```html
-<div class="CoveoSortDropdown"></div>
+<div class="CoveoCustomSortDropdown"></div>
 ```
 
 ## Extending
@@ -81,11 +79,11 @@ Place the component after the last tab in the `coveo-tab-section`
 Extending the component can be done as follows:
 
 ```javascript
-import { SortDropdown, ISortDropdownOptions } from "@coveops/sort-dropdown";
+import { CustomSortDropdown, ICustomSortDropdownOptions } from "@coveops/sort-dropdown";
 
-export interface IExtendedSortDropdownOptions extends ISortDropdownOptions {}
+export interface IExtendedCustomSortDropdownOptions extends ICustomSortDropdownOptions {}
 
-export class ExtendedSortDropdown extends SortDropdown {}
+export class ExtendedCustomSortDropdown extends CustomSortDropdown {}
 ```
 
 ## Contribute
