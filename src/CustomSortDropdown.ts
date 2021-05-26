@@ -26,9 +26,13 @@ export class CustomSortDropdown extends Component {
     this.options = ComponentOptions.initComponentOptions(element, CustomSortDropdown, options);
     // Init Events
     this.bind.onRootElement(Coveo.InitializationEvents.afterInitialization, this.handleAfterInit);
+
     // State Events
     let changeSortEvtName = this.getStateEventName(Coveo.QueryStateModel.eventTypes.changeOne + Coveo.QueryStateModel.attributesEnum.sort);
+    let changeTabEvtName = this.getStateEventName(Coveo.QueryStateModel.eventTypes.changeOne + Coveo.QueryStateModel.attributesEnum.t);
     this.bind.onRootElement(changeSortEvtName, (args: Coveo.IAttributeChangedEventArg) => this.handleCoveoStateChanged(args));
+    this.bind.onRootElement(changeTabEvtName, (args: Coveo.IAttributeChangedEventArg) => this.handleTabChange(args));
+
     // Query Events
     this.bind.onRootElement(Coveo.QueryEvents.querySuccess, (args: Coveo.IQuerySuccessEventArgs) => this.handleQuerySuccess(args));
     this.bind.onRootElement(Coveo.QueryEvents.queryError, (args: Coveo.IQueryErrorEventArgs) => this.handleQueryError(args));
@@ -62,11 +66,18 @@ export class CustomSortDropdown extends Component {
     return Coveo.QueryStateModel.ID + ':' + event;
   }
 
-  private handleAfterInit() {
+  private reset() {
     this.buildSelectOptions();
     if (!this.options.displayAsSelect) {
       this.buildStyledSelect();
     }
+  }
+  private handleAfterInit() {
+    this.reset();
+  }
+
+  private handleTabChange(args: Coveo.IAttributeChangedEventArg) {
+    this.reset();
   }
 
   private buildStyledSelect() {
