@@ -81,6 +81,12 @@ export class CustomSortDropdown extends Component {
   }
 
   private buildStyledSelect() {
+    // remove previous UI if any (it can happen if buildStyledSelect() is called multiple times).
+    const previousElements = this.select.parentNode.querySelectorAll('.coveo-custom-select,.coveo-custom-select-styled,.coveo-custom-select-options');
+    previousElements.forEach(el=> {
+      el.parentNode.removeChild(el);
+    });
+
     const wrapper = Coveo.$$('div', { className: 'coveo-custom-select' });
     this.select.parentNode.insertBefore(wrapper.el, this.select);
     wrapper.append(this.select);
