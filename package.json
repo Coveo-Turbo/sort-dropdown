@@ -1,6 +1,6 @@
 {
     "name": "@coveops/sort-dropdown",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "",
     "main": "dist/index.js",
     "scripts": {
@@ -17,8 +17,8 @@
         "dist"
     ],
     "dependencies": {
-        "@coveops/turbo-core": "^1.1.1",
-        "coveo-search-ui": "^2.9373.6"
+        "@coveops/turbo-core": "^1.2.1",
+        "coveo-search-ui": "^2.10087.4"
     },
     "devDependencies": {
         "@coveops/cli": "^0.8.1"
