@@ -100,3 +100,6 @@ export class ExtendedCustomSortDropdown extends CustomSortDropdown {}
 2. Copy `.env.dist` to `.env` and update the COVEO_ORG_ID and COVEO_TOKEN fields in the `.env` file to use your Coveo credentials and SERVER_PORT to configure the port of the sandbox - it will use 8080 by default.
 3. Build the code base: `npm run build`
 4. Serve the sandbox for live development `npm run serve`
+
+## History
+6 Juli 2021 - Fixed State change

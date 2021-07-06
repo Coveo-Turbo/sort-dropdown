@@ -47,7 +47,10 @@ export class CustomSortDropdown extends Component {
   }
 
   private handleCoveoStateChanged(args: Coveo.IAttributeChangedEventArg) {
-    this.currentSearchSort = args.value;
+    if (args.value!==this.currentSearchSort) {
+      this.currentSearchSort = args.value;
+      this.reset();
+    }
   }
 
   private handleQuerySuccess(data: Coveo.IQuerySuccessEventArgs) {
