@@ -3,8 +3,12 @@ import { lazyComponent } from '@coveops/turbo-core';
 
 export interface ICustomSortDropdownOptions {
   caption: string;
+  header: string;
+  description: string;
   displayCaption?: boolean;
   displayAsSelect?: boolean;
+  displayHeader?: boolean;
+  displayDescription?: boolean;
 }
 
 @lazyComponent
@@ -12,8 +16,12 @@ export class CustomSortDropdown extends Component {
   static ID = 'CustomSortDropdown';
   static options: ICustomSortDropdownOptions = {
     caption: ComponentOptions.buildLocalizedStringOption({ localizedString: () => l('SortBy') }),
+    header: ComponentOptions.buildStringOption({ defaultValue: 'Sort' }),
+    description: ComponentOptions.buildStringOption({ defaultValue: 'Your results will populate after a selection is made from the dropdown below.' }),
     displayCaption: ComponentOptions.buildBooleanOption({ defaultValue: false }),
-    displayAsSelect: ComponentOptions.buildBooleanOption({ defaultValue: false })
+    displayAsSelect: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+    displayHeader: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+    displayDescription: ComponentOptions.buildBooleanOption({ defaultValue: false })
   };
 
   private currentSearchSort: string;
@@ -36,6 +44,12 @@ export class CustomSortDropdown extends Component {
     // Query Events
     this.bind.onRootElement(Coveo.QueryEvents.querySuccess, (args: Coveo.IQuerySuccessEventArgs) => this.handleQuerySuccess(args));
     this.bind.onRootElement(Coveo.QueryEvents.queryError, (args: Coveo.IQueryErrorEventArgs) => this.handleQueryError(args));
+    if (this.options.displayHeader) {
+      Coveo.$$(this.element).append(this.buildHeader());
+    }
+    if (this.options.displayDescription) {
+      Coveo.$$(this.element).append(this.buildDescription());
+    }
     if (this.options.displayCaption) {
       Coveo.$$(this.element).append(this.buildLabel());
     }
@@ -47,7 +61,7 @@ export class CustomSortDropdown extends Component {
   }
 
   private handleCoveoStateChanged(args: Coveo.IAttributeChangedEventArg) {
-    if (args.value!==this.currentSearchSort) {
+    if (args.value !== this.currentSearchSort) {
       this.currentSearchSort = args.value;
       this.reset();
     }
@@ -86,7 +100,7 @@ export class CustomSortDropdown extends Component {
   private buildStyledSelect() {
     // remove previous UI if any (it can happen if buildStyledSelect() is called multiple times).
     const previousElements = this.select.parentNode.querySelectorAll('.coveo-custom-select,.coveo-custom-select-styled,.coveo-custom-select-options');
-    previousElements.forEach(el=> {
+    previousElements.forEach(el => {
       el.parentNode.removeChild(el);
     });
 
@@ -139,6 +153,16 @@ export class CustomSortDropdown extends Component {
         self.listOptions.hide();
       });
     }
+  }
+
+  private buildHeader() {
+    const header = Coveo.$$('span', { className: 'coveo-custom-sort-header' }, this.options.header).el;
+    return header;
+  }
+
+  private buildDescription() {
+    const description = Coveo.$$('span', { className: 'coveo-custom-sort-description' }, this.options.description).el;
+    return description;
   }
 
   private buildLabel() {

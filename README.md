@@ -16,6 +16,22 @@ Disclaimer: This component was built by the community at large and is not an off
 
 ## Options
 
+### header (optional) : _string_
+
+Specifies the header of the component
+
+Example: `data-header='Sort'`
+
+Default value is `Sort`.
+
+### description (optional) : _string_
+
+Specifies the description of the component
+
+Example: `data-description='Use this component to sort your results.'`
+
+Default value is `Your results will populate after a selection is made from the dropdown below.`.
+
 ### caption (optional) : _string_
 
 Specifies the title caption of the component
@@ -24,9 +40,25 @@ Example: `data-caption='Sort:'`
 
 Default value is `Sort By:`.
 
+### displayHeader (optional) : _boolean_
+
+Whether to display the header.
+
+Default value is `false`.
+
+Example: ` data-display-header='true'`
+
+### displayDescription (optional) : _boolean_
+
+Whether to display the description.
+
+Default value is `false`.
+
+Example: ` data-display-description='true'`
+
 ### displayCaption (optional) : _boolean_
 
-Whether to display caption
+Whether to display the caption.
 
 Default value is `false`.
 
